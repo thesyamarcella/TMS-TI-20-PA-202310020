@@ -1,4 +1,4 @@
-package com.ibik.academicservices.academicservices.program_study;
+package com.ibik.academicservices.academicservices.programstudy;
 
 import java.io.Serializable;
 
@@ -8,12 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="programstudy")
-
-public class ProgramStudy implements Serializable {
+@Table(name = "Program_Study")
+public class ProgramStudy implements Serializable{
+    
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -21,12 +21,14 @@ public class ProgramStudy implements Serializable {
     private int id;
 
     @Column(length = 50)
+    @NotEmpty(message = "Name is required")
     private String name;
 
     @Column(length = 20)
     private String description;
 
     @Column(length = 5)
+    @NotEmpty(message = "Code is required")
     private String code;
 
     @Column(length = 11)
@@ -38,8 +40,11 @@ public class ProgramStudy implements Serializable {
     @Column(length = 11)
     private int department_id;
 
-    @Column(nullable = false, columnDefinition =  "TINYINT(1)")
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean is_active;
+
+    public ProgramStudy() {
+    }
 
     public ProgramStudy(int id, String name, String description, String code, int program_id, int faculty_id,
             int department_id, boolean is_active) {
@@ -51,9 +56,6 @@ public class ProgramStudy implements Serializable {
         this.faculty_id = faculty_id;
         this.department_id = department_id;
         this.is_active = is_active;
-    }
-
-    public ProgramStudy(){
     }
 
     public static long getSerialversionuid() {
@@ -123,5 +125,4 @@ public class ProgramStudy implements Serializable {
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
     }
-
 }

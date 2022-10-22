@@ -8,37 +8,44 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="students")
-
-public class Students implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "Students")
+public class Students implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(length = 15)
+    @NotEmpty(message = "NPM is required")
     private String npm;
 
     @Column(length = 10)
+    @NotEmpty(message = "Firstname is required")
     private String firstname;
 
     @Column(length = 10)
+    @NotEmpty(message = "Middlename is required")
     private String middlename;
 
     @Column(length = 10)
+    @NotEmpty(message = "Lastname is required")
     private String lastname;
 
-    @Column(length = 11)
+    // @Column(length = 11)
+    @Min(value = 1, message = "Program is required")
     private int program_id;
 
-    @Column(length = 11)
+    // @Column(length = 11)
+    @Min(value = 1, message = "Department is required")
     private int department_id;
-    
-    public Students(){
+
+    public Students() {
     }
 
     public Students(int id, String npm, String firstname, String middlename, String lastname, int program_id,
@@ -50,6 +57,10 @@ public class Students implements Serializable {
         this.lastname = lastname;
         this.program_id = program_id;
         this.department_id = department_id;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     public int getId() {
@@ -107,5 +118,4 @@ public class Students implements Serializable {
     public void setDepartment_id(int department_id) {
         this.department_id = department_id;
     }
-
 }
