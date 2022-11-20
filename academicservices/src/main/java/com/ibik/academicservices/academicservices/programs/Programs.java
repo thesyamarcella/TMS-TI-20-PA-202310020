@@ -10,12 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+
 @Entity
-@Table(name = "Programs")
+@Table(name="programs")
+
 public class Programs implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,21 +26,17 @@ public class Programs implements Serializable {
     @Column(length = 20)
     private String description;
 
-    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    @Column(nullable = false, columnDefinition =  "TINYINT(1)")
     private boolean is_active;
 
-    public Programs() {
-    }
-
-    public Programs(int id, String name, String description, boolean is_active) {
+    public Programs(int id, @NotEmpty(message = "Name is required") String name, String description, boolean is_active) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.is_active = is_active;
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
+    public Programs(){
     }
 
     public int getId() {
@@ -75,4 +70,5 @@ public class Programs implements Serializable {
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
     }
+
 }

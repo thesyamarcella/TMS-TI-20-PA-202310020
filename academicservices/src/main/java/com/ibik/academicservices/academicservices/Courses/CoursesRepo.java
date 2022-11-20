@@ -1,4 +1,4 @@
-package com.ibik.academicservices.academicservices.programs;
+package com.ibik.academicservices.academicservices.Courses;
 
 import org.springframework.data.repository.CrudRepository;
 // import org.springframework.data.;
@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 // @RepositoryRestResource
 // public interface repositoryName extends CrudRepository<entityName, entityIdType>{}
 
-public interface ProgramsRepo extends CrudRepository<Programs, Integer> {
+public interface CoursesRepo extends CrudRepository<Courses, Integer> {
     //function query JPAQL atau MYSQL Query
 }
+
